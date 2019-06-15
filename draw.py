@@ -1,6 +1,99 @@
 from display import *
 from matrix import *
 from gmath import *
+'''
+def add_truncated_cone(edges, cx, cy, cz, r1, r2, h, step):
+    top = []
+    bot = []
+    add_circle(bot, cx, cy, cz+h, r2, step)
+    add_circle(top, cx, cy, cz, r1, step)
+
+    #draw bases
+    for points in range(0, len(bot)-1):
+        add_polygon(edges, cx, cy, cz + h,
+                    bot[points][0],
+                    bot[points][1],
+                    bot[points][2],
+                    bot[points+1][0],
+                    bot[points+1][1],
+                    bot[points+1][2])
+        add_polygon(edges,
+                    top[points][0],
+                    top[points][1],
+                    top[points][2],
+                    cx, cy, cz,
+                    top[points+1][0],
+                    top[points+1][1],
+                    top[points+1][2])
+
+    for points in range(0, len(top)-1):
+        add_polygon(edges,
+                    top[points][0],
+                    top[points][1],
+                    top[points][2],
+                    top[points+1][0],
+                    top[points+1][1],
+                    top[points+1][2],
+                    bot[points+1][0],
+                    bot[points+1][1],
+                    bot[points+1][2])
+        add_polygon(edges,
+                    top[points][0],
+                    top[points][1],
+                    top[points][2],
+                    bot[points+1][0],
+                    bot[points+1][1],
+                    bot[points+1][2],
+                    bot[points][0],
+                    bot[points][1],
+                    bot[points][2])
+        add_polygon(edges,
+                    top[points+1][0],
+                    top[points+1][1],
+                    top[points+1][2],
+                    top[points][0],
+                    top[points][1],
+                    top[points][2],
+                    bot[points][0],
+                    bot[points][1],
+                    bot[points][2])
+        add_polygon(edges,
+                    top[points+1][0],
+                    top[points+1][1],
+                    top[points+1][2],
+                    bot[points][0],
+                    bot[points][1],
+                    bot[points][2],
+                    bot[points+1][0],
+                    bot[points+1][1],
+                    bot[points+1][2])
+'''
+
+def add_cone(edges, x, y, z, radius, height, step):
+    top = []
+    bot = []
+    add_circle(bot, x, y, z+height, radius, step)
+    add_circle(top, x, y, z, radius, step)
+
+    #draw cone
+    for points in range(0, len(top)-1):
+        add_polygon(edges, x, y, z+height,
+                    top[points][0],
+                    top[points][1],
+                    top[points][2],
+                    top[points+1][0],
+                    top[points+1][1],
+                    top[points+1][2])
+
+    #draw base
+    for points in range(0, len(top)-1):
+        add_polygon(edges, x, y, z,
+                    top[points][0],
+                    top[points][1],
+                    top[points][2],
+                    top[points+1][0],
+                    top[points+1][1],
+                    top[points+1][2])
 
 def add_cylinder(edges, cx, cy, cz, r, h, step):
     top = []
