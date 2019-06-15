@@ -1,0 +1,45 @@
+basename snowman
+frames 50
+constants ruby 0.1745 0.61424  0.727811 0.01175 0.04136 0.626959 0.01175 0.04136 0.626959
+constants brass 0.329412 0.780392 0.992157 0.223529 0.568627 0.941176 0.027451 0.113725 0.807843
+constants jade 0.135 0.54 0.316228 0.2225 0.89 0.316228 0.1575 0.63 0.316228
+constants white 0.05 0.5 0.70 0.05 0.5 0.70 0.05 0.5 0.70
+push
+rotate y 30
+scale .5 .5 .5
+push
+move 0 0 100
+cone brass 250 300 0 15 100
+pop
+push
+sphere white 250 350 0 100
+sphere ruby 200 330 100 10
+sphere ruby 300 330 100 10
+sphere white 250 120 0 130
+box brass 150 460 0 200 10 30
+cylinder ruby 250 170 200 10 10
+cylinder ruby 250 120 200 10 10
+cylinder ruby 250 60 200 10 10
+box brass 200 490 0 100 30 30
+pop
+pop
+push
+rotate x -90
+move 0 100 80
+cone jade 350 150 0 150 400
+pop
+push
+pyramid brass 310 20 -200 80 
+pop
+push
+move 250 250 0
+scale 2 2 2 bigenator
+rotate y 360 spinny
+rotate z 360 spinny
+cylinder 0 0 0 75 125
+cone 100 100 0 50 100
+truncated_cone 200 200 0 20 40 100
+pyramid -200 -200 0 100
+vary spinny 0 49 0 .2
+vary bigenator 0 24 0 .2
+vary bigenator 25 49 .2 0

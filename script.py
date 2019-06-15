@@ -140,6 +140,8 @@ def run(filename):
             if c == 'box':
                 if command['constants']:
                     reflect = command['constants']
+                else:
+                    reflect = '.white'
                 add_box(tmp,
                         args[0], args[1], args[2],
                         args[3], args[4], args[5])
@@ -151,6 +153,8 @@ def run(filename):
             elif c == 'cylinder':
                 if command['constants']:
                     reflect = command['constants']
+                else:
+                    reflect = '.white'
                 add_cylinder(tmp,
                           args[0], args[1], args[2], args[3], args[4], step_3d)
                 matrix_mult( stack[-1], tmp )
@@ -160,6 +164,8 @@ def run(filename):
             elif c == 'cone':
                 if command['constants']:
                     reflect = command['constants']
+                else:
+                    reflect = '.white'
                 add_cone(tmp,
                           args[0], args[1], args[2], args[3], args[4], step_3d)
                 matrix_mult( stack[-1], tmp )
@@ -169,6 +175,8 @@ def run(filename):
             elif c == 'truncated_cone':
                 if command['constants']:
                     reflect = command['constants']
+                else:
+                    reflect = '.white'
                 add_truncated_cone(tmp,
                           args[0], args[1], args[2], args[3], args[4], args[5], step_3d)
                 matrix_mult( stack[-1], tmp )
@@ -179,6 +187,8 @@ def run(filename):
             elif c == 'pyramid':
                 if command['constants']:
                     reflect = command['constants']
+                else:
+                    reflect = '.white'
                 add_pyramid(tmp,
                           args[0], args[1], args[2], args[3])
                 matrix_mult( stack[-1], tmp )
@@ -188,27 +198,34 @@ def run(filename):
             elif c == 'sphere':
                 if command['constants']:
                     reflect = command['constants']
+                else:
+                    reflect = '.white'
                 add_sphere(tmp,
                            args[0], args[1], args[2], args[3], step_3d)
                 matrix_mult( stack[-1], tmp )
                 draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
                 tmp = []
                 reflect = '.white'
+                
             elif c == 'torus':
                 if command['constants']:
                     reflect = command['constants']
+                else:
+                    reflect = '.white'
                 add_torus(tmp,
                           args[0], args[1], args[2], args[3], args[4], step_3d)
                 matrix_mult( stack[-1], tmp )
                 draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
                 tmp = []
                 reflect = '.white'
+                
             elif c == 'line':
                 add_edge(tmp,
                          args[0], args[1], args[2], args[3], args[4], args[5])
                 matrix_mult( stack[-1], tmp )
                 draw_lines(tmp, screen, zbuffer, color)
                 tmp = []
+                
             elif c == 'move':
                 if command["knob"]: 
                     knob_value = symbols[command["knob"]][1]
