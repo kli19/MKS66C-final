@@ -4,6 +4,7 @@ tokens = (
     "CYLINDER",
     "CONE",
     "TRUNCATED_CONE",
+    "PYRAMID",
     "STRING",
     "ID",
     "XYZ",
@@ -48,6 +49,7 @@ reserved = {
     "cylinder": "CYLINDER",
     "cone": "CONE",
     "truncated_cone": "TRUNCATED_CONE",
+    "pyramid": "PYRAMID",
     "x" : "XYZ", 
     "y" : "XYZ", 
     "z" : "XYZ", 
@@ -124,6 +126,22 @@ lex.lex()
 commands = []
 symbols = {}
 
+def p_command_pyramid(p):
+    """command : PYRAMID NUMBER NUMBER NUMBER NUMBER
+               | PYRAMID SYMBOL NUMBER NUMBER NUMBER NUMBER
+               | PYRAMID NUMBER NUMBER NUMBER NUMBER SYMBOL
+               | PYRAMID SYMBOL NUMBER NUMBER NUMBER NUMBER SYMBOL"""
+    cmd = {'op' : p[1], 'constants' : None, 'cs' : None, 'args':[]}
+    arg_start = 2
+    if isinstance(p[2], str):
+        cmd['constants'] = p[2]
+        arg_start = 3
+    if len(p) == 7 and isinstance(p[6], str):
+        cmd['cs'] = p[6]
+    if len(p) == 8 and isinstance(p[7], str):
+          cmd['cs'] = p[7]
+    cmd['args'] = p[arg_start:arg_start+4]
+    commands.append(cmd)
 
 def p_command_truncated_cone(p):
     """command : TRUNCATED_CONE NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER

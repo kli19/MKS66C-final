@@ -2,6 +2,31 @@ from display import *
 from matrix import *
 from gmath import *
 
+def add_pyramid( polygons, x, y, z, a):
+    h = int(a*math.sqrt(3) / 2)
+    x1 = x + a/2
+    y1 = y+h
+    y2 = y + int(h/3)
+    z1 = z + int(h/3)
+    z2 = z+h
+
+    add_polygon( polygons,
+                 x+a, y, z,
+                 x, y, z,
+                 x1, y1, z1)
+    add_polygon( polygons,
+                 x+a, y, z,
+                 x1, y1, z1,
+                 x1, y, z2)
+    add_polygon( polygons,
+                 x1, y, z2,
+                 x, y, z,
+                 x+a, y, z)
+    add_polygon( polygons,
+                 x1, y1, z1,
+                 x, y, z,
+                 x1, y, z2)
+
 def add_truncated_cone(edges, cx, cy, cz, r1, r2, h, step):
     top = []
     bot = []
