@@ -124,12 +124,12 @@ lex.lex()
 commands = []
 symbols = {}
 
-'''
+
 def p_command_truncated_cone(p):
-    """command : FRUSTUM NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER
-               | FRUSTUM SYMBOL NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER
-               | FRUSTUM NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER SYMBOL
-               | FRUSTUM SYMBOL NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER SYMBOL"""
+    """command : TRUNCATED_CONE NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER
+               | TRUNCATED_CONE SYMBOL NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER
+               | TRUNCATED_CONE NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER SYMBOL
+               | TRUNCATED_CONE SYMBOL NUMBER NUMBER NUMBER NUMBER NUMBER NUMBER SYMBOL"""
     cmd = {'op' : p[1], 'constants' : None, 'cs' : None, 'args':[]}
     arg_start = 2
     if isinstance(p[2], str):
@@ -141,7 +141,7 @@ def p_command_truncated_cone(p):
           cmd['cs'] = p[9]
     cmd['args'] = p[arg_start:arg_start+6]
     commands.append(cmd)
-'''
+
 
 def p_command_cone(p):
     """command : CONE NUMBER NUMBER NUMBER NUMBER NUMBER

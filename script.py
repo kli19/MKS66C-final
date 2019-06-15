@@ -165,7 +165,7 @@ def run(filename):
                 matrix_mult( stack[-1], tmp )
                 draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
                 tmp = []
-                '''
+                
             elif c == 'truncated_cone':
                 if command['constants']:
                     reflect = command['constants']
@@ -174,7 +174,7 @@ def run(filename):
                 matrix_mult( stack[-1], tmp )
                 draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
                 tmp = []
-            '''
+            
         
             elif c == 'sphere':
                 if command['constants']:

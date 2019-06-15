@@ -1,7 +1,7 @@
 from display import *
 from matrix import *
 from gmath import *
-'''
+
 def add_truncated_cone(edges, cx, cy, cz, r1, r2, h, step):
     top = []
     bot = []
@@ -67,7 +67,7 @@ def add_truncated_cone(edges, cx, cy, cz, r1, r2, h, step):
                     bot[points+1][0],
                     bot[points+1][1],
                     bot[points+1][2])
-'''
+
 
 def add_cone(edges, x, y, z, radius, height, step):
     top = []
