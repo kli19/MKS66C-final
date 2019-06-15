@@ -2,6 +2,78 @@ from display import *
 from matrix import *
 from gmath import *
 
+def add_cylinder(edges, cx, cy, cz, r, h, step):
+    top = []
+    bot = []
+    add_circle(bot, cx, cy, cz+h, r, step)
+    add_circle(top, cx, cy, cz, r, step)
+
+    #bases
+    for points in range(0, len(bot)-1):
+        add_polygon(edges, cx, cy, cz+h,
+                    bot[points][0],
+                    bot[points][1],
+                    bot[points][2],
+                    bot[points+1][0],
+                    bot[points+1][1],
+                    bot[points+1][2])
+        add_polygon(edges,
+                    top[points][0],
+                    top[points][1],
+                    top[points][2],
+                    cx, cy, cz,
+                    top[points+1][0],
+                    top[points+1][1],
+                    top[points+1][2])
+
+    #body
+    for points in range(0, len(top)-1):
+
+        add_polygon(edges,
+                    top[points][0],
+                    top[points][1],
+                    top[points][2],
+                    top[points+1][0],
+                    top[points+1][1],
+                    top[points+1][2],
+                    bot[points+1][0],
+                    bot[points+1][1],
+                    bot[points+1][2])
+        
+        add_polygon(edges,
+                    top[points][0],
+                    top[points][1],
+                    top[points][2],
+                    bot[points+1][0],
+                    bot[points+1][1],
+                    bot[points+1][2],
+                    bot[points][0],
+                    bot[points][1],
+                    bot[points][2])
+        
+        add_polygon(edges,
+                    top[points+1][0],
+                    top[points+1][1],
+                    top[points+1][2],
+                    top[points][0],
+                    top[points][1],
+                    top[points][2],
+                    bot[points][0],
+                    bot[points][1],
+                    bot[points][2])
+        
+        add_polygon(edges,
+                    top[points+1][0],
+                    top[points+1][1],
+                    top[points+1][2],
+                    bot[points][0],
+                    bot[points][1],
+                    bot[points][2],
+                    bot[points+1][0],
+                    bot[points+1][1],
+                    bot[points+1][2])
+
+
 def draw_scanline(x0, z0, x1, z1, y, screen, zbuffer, color):
     if x0 > x1:
         tx = x0
@@ -219,8 +291,8 @@ def add_torus(polygons, cx, cy, cz, r0, r1, step ):
                 p1 = p0 - longt;
             else:
                 p1 = p0 + 1;
-            p2 = (p1 + step) % (step * step);
-            p3 = (p0 + step) % (step * step);
+                p2 = (p1 + step) % (step * step);
+                p3 = (p0 + step) % (step * step);
 
             add_polygon(polygons,
                         points[p0][0],
@@ -396,6 +468,6 @@ def draw_line( x0, y0, z0, x1, y1, z1, screen, zbuffer, color ):
             x+= dx_east
             y+= dy_east
             d+= d_east
-        z+= dz
-        loop_start+= 1
-    plot( screen, zbuffer, color, x, y, z )
+            z+= dz
+            loop_start+= 1
+            plot( screen, zbuffer, color, x, y, z )
